@@ -7,12 +7,17 @@ plt.style.use('dark_background')
 
 class System:
     def __init__(self, name: str, dimension: int):
-        assert dimension == 2 or dimension == 3, f"There's no visualization for this choice of dimension!"
+        assert dimension == 2 or dimension == 3, "There's no visualization for this choice of dimension!"
 
         self.dimension = dimension
         self.name = name
         self.bodies = []
-        self.G = 1
+        # Given the units:
+        # UA = Distance Earth-Moon;
+        # UM = Earth's mass;
+        # UT = 1 month;
+        # the gravitational constant is approximately given by
+        self.G = 5  # UA.UM^(-1).UT^(-2)
         self.initial_coordinates = []
 
     def add_body(self, body):
@@ -60,10 +65,9 @@ class System:
         if self.dimension == 2:
             fig, ax = plt.subplots()
             scatter = ax.scatter([], [])
-            ax.set_xlabel('X-axis')
-            ax.set_ylabel('Y-axis')
             ax.set_title(f"Simulation of the {self.name}")
-
+            ax.set_xlabel('X-axis (UA)')
+            ax.set_ylabel('Y-axis (UA)')
             initial_coordinates = self.get_initial_coordinates()
             window_range = max(initial_coordinates) + 10
             ax.set_xlim(-window_range, window_range)
@@ -72,6 +76,8 @@ class System:
             colors = [body.color for body in self.bodies]
 
             num_steps = int(total_time / dt)
+            month_count = 0
+            subtitle = ax.text(0.5, 0.05, "", color='white', fontsize=10, transform=ax.transAxes, ha='center')
             for i in range(num_steps):
                 self.update(dt, i)
                 x_positions = [body.position[0] for body in self.bodies]
@@ -79,6 +85,11 @@ class System:
 
                 scatter.set_offsets(np.column_stack((x_positions, y_positions)))
                 scatter.set_color(colors)
+
+                if ((i+1) * dt) - int((i+1) * dt) == 0:
+                    month_count += 1
+                subtitle.remove()
+                subtitle = ax.text(0.5, 0.05, f"Month {month_count}", color='white', fontsize=10, transform=ax.transAxes, ha='center')
                 plt.pause(dt)
 
             plt.show()
@@ -93,20 +104,26 @@ class System:
             colors = [body.color for body in self.bodies]
 
             num_steps = int(total_time / dt)
+            month_count = 0
             for i in range(num_steps):
                 self.update(dt, i)
                 x_positions = [body.position[0] for body in self.bodies]
                 y_positions = [body.position[1] for body in self.bodies]
                 z_positions = [body.position[2] for body in self.bodies]
                 ax.clear()
-                ax.set_xlabel('X-axis')
-                ax.set_ylabel('Y-axis')
-                ax.set_zlabel('Z-axis')
                 ax.set_title(f"Simulation of the {self.name}")
+                ax.set_xlabel('X-axis (UA)')
+                ax.set_ylabel('Y-axis (UA)')
+                ax.set_zlabel('Z-axis (UA)')
                 ax.set_xlim(-window_range, window_range)
                 ax.set_ylim(-window_range, window_range)
                 ax.set_zlim(-window_range, window_range)
                 ax.scatter(x_positions, y_positions, z_positions, c=colors)
+
+                if ((i+1) * dt) - int((i+1) * dt) == 0:
+                    month_count += 1
+                subtitle_text = f"Month {month_count}"
+                ax.text(0.5, 0.05, 0.05, subtitle_text, color='white', fontsize=10, transform=ax.transAxes, ha='center')
                 plt.pause(dt)
 
             plt.show()

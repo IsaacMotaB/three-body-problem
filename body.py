@@ -4,10 +4,10 @@ import numpy as np
 class Body:
     def __init__(self, name: str, color: str, mass: float, position, velocity):
         # Run basic validations to the received arguments
-        assert mass > 0, f"Mass must be positive!"
+        assert mass > 0, "Mass must be positive!"
         assert isinstance(position, np.ndarray), "Initial position must be a numpy array!"
         assert isinstance(velocity, np.ndarray), "Initial velocity must be a numpy array!"
-        assert len(position) == len(velocity), f"Initial position and velocity vectors must have the same dimensions!"
+        assert len(position) == len(velocity), "Initial position and velocity vectors must have the same dimensions!"
         assert np.issubdtype(position.dtype, np.number), "All values of the initial position must be numerical!"
         assert np.issubdtype(velocity.dtype, np.number), "All values of the initial velocity must be numerical!"
 
@@ -18,6 +18,12 @@ class Body:
         self.__position = position
         self.__velocity = velocity
         self.__acceleration = []
+
+    @staticmethod
+    def string_to_vector(string):
+        elements = string.strip('[]').split(',')
+        vector = [float(element.strip()) for element in elements]
+        return np.array(vector)
 
     def __repr__(self):
         return self.__name
