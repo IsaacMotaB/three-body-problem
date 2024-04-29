@@ -1,0 +1,10 @@
+name,color,size,mass,position,velocity
+Star,yellow,100,6561,"[0, 0]","[0 ,0]"
+Planet,blue,20,81,"[125, 0]","[0 ,16.2]"
+Moon,white,4,1,"[130, 0]","[0 ,21.2]"
+
+# system_name: star_planet_moon system
+# dimension: 2
+# totaltime: 60
+# timestep: 0.05
+# window_increase: 40

@@ -1,0 +1,12 @@
+name,color,size,mass,position,velocity
+Body 1,red,20,1,"[0, 0]","[0 ,0]"
+Body 2,blue,20,1,"[0, 0]","[0 ,0]"
+Body 3,green,20,1,"[0, 0]","[0 ,0]"
+
+# system_name: mold system
+# dimension: 2
+# totaltime: 60
+# timestep: 0.05
+# window_increase: 10
+
+## This is the mold of the general format required for the csv files (delete this comment line on the actual files)

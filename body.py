@@ -2,9 +2,9 @@ import numpy as np
 
 
 class Body:
-    def __init__(self, name: str, color: str, mass: float, position, velocity):
+    def __init__(self, name: str, color: str, radius: float, mass: float, position, velocity):
         # Run basic validations to the received arguments
-        assert mass > 0, "Mass must be positive!"
+        assert mass >= 0, "Mass cannot be negative!"
         assert isinstance(position, np.ndarray), "Initial position must be a numpy array!"
         assert isinstance(velocity, np.ndarray), "Initial velocity must be a numpy array!"
         assert len(position) == len(velocity), "Initial position and velocity vectors must have the same dimensions!"
@@ -14,10 +14,12 @@ class Body:
         # Assigning attributes
         self.__name = name
         self.__color = color
+        self.__radius = radius
         self.__mass = mass
         self.__position = position
         self.__velocity = velocity
         self.__acceleration = []
+        self.__new_position = []
 
     @staticmethod
     def string_to_vector(string):
@@ -42,6 +44,10 @@ class Body:
         return self.__mass
 
     @property
+    def radius(self):
+        return self.__radius
+
+    @property
     def position(self):
         return self.__position
 
@@ -64,3 +70,11 @@ class Body:
     @acceleration.setter
     def acceleration(self, value):
         self.__acceleration = value
+
+    @property
+    def new_position(self):
+        return self.__new_position
+
+    @new_position.setter
+    def new_position(self, value):
+        self.__new_position = value

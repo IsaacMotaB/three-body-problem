@@ -37,6 +37,8 @@ class System:
     def update(self, dt, iteration):
         for body in self.bodies:
             self._update_body(body, dt, iteration)
+        for body in self.bodies:
+            body.position = body.new_position
 
     def _update_body(self, body, dt, iteration):
         # Determine acceleration using Newton's law of universal gravitation
@@ -46,7 +48,7 @@ class System:
                 r = other.position - body.position
                 mag_r = np.linalg.norm(r)
                 if mag_r > 0:
-                    new_acceleration += (self.G * other.mass / mag_r**2) * r
+                    new_acceleration += (self.G * other.mass / mag_r**3) * r
         body.acceleration = new_acceleration
 
         # Calculate new velocity using leapfrog integration technique
@@ -59,21 +61,22 @@ class System:
 
         # Calculate new position using leapfrog integration technique
         new_position = body.position + body.velocity * dt
-        body.position = new_position
+        body.new_position = new_position
 
-    def run_simulation(self, total_time, dt):
+    def run_simulation(self, total_time, dt, window_increase):
         if self.dimension == 2:
+            colors = [body.color for body in self.bodies]
+            radii = [body.radius for body in self.bodies]
+
             fig, ax = plt.subplots()
-            scatter = ax.scatter([], [])
+            scatter = ax.scatter([], [], s=20)
             ax.set_title(f"Simulation of the {self.name}")
             ax.set_xlabel('X-axis (UA)')
             ax.set_ylabel('Y-axis (UA)')
             initial_coordinates = self.get_initial_coordinates()
-            window_range = max(initial_coordinates) + 10
+            window_range = max(initial_coordinates) + window_increase
             ax.set_xlim(-window_range, window_range)
             ax.set_ylim(-window_range, window_range)
-
-            colors = [body.color for body in self.bodies]
 
             num_steps = int(total_time / dt)
             month_count = 0
@@ -85,6 +88,7 @@ class System:
 
                 scatter.set_offsets(np.column_stack((x_positions, y_positions)))
                 scatter.set_color(colors)
+                scatter.set_sizes(radii)
 
                 if ((i+1) * dt) - int((i+1) * dt) == 0:
                     month_count += 1
@@ -99,9 +103,10 @@ class System:
             ax = fig.add_subplot(111, projection='3d')
 
             initial_coordinates = self.get_initial_coordinates()
-            window_range = max(initial_coordinates) + 10
+            window_range = max(initial_coordinates) + window_increase
 
             colors = [body.color for body in self.bodies]
+            radii = [body.radius for body in self.bodies]
 
             num_steps = int(total_time / dt)
             month_count = 0
@@ -118,7 +123,7 @@ class System:
                 ax.set_xlim(-window_range, window_range)
                 ax.set_ylim(-window_range, window_range)
                 ax.set_zlim(-window_range, window_range)
-                ax.scatter(x_positions, y_positions, z_positions, c=colors)
+                ax.scatter(x_positions, y_positions, z_positions, s=radii, c=colors)
 
                 if ((i+1) * dt) - int((i+1) * dt) == 0:
                     month_count += 1

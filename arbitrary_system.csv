@@ -1,9 +1,0 @@
-name,color,mass,position,velocity
-Body 1,red,1,"[0, 0]","[1 ,2]"
-Body 2,green,1,"[3, 3]","[1 ,-1]"
-Body 3,blue,1,"[9, 0]","[-2 ,0]"
-
-# system_name: arbitrary system
-# system_dimension: 2
-# system_totaltime: 60
-# system_timestep: 0.05
