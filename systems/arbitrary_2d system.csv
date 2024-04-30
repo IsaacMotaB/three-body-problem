@@ -3,8 +3,9 @@ Body 1,red,20,1,"[0, 4]","[0 ,-1]"
 Body 2,blue,25,1,"[6, 0]","[-1 ,0.5]"
 Body 3,green,40,2,"[-2, -6]","[0 ,0.5]"
 
-# system_name: arbitrary system
+# system_name: arbitrary_2d system
 # dimension: 2
+# gravitational_constant: 5
 # totaltime: 24
 # timestep: 0.05
 # window_increase: 10

@@ -4,6 +4,7 @@ Star 2,blue,40,5,"[2, 0]","[0 ,1]"
 
 # system_name: binary_star system
 # dimension: 2
+# gravitational_constant: 5
 # totaltime: 60
 # timestep: 0.05
 # window_increase: 10

@@ -5,6 +5,7 @@ Body 3,green,20,1,"[0, 0]","[0 ,0]"
 
 # system_name: mold system
 # dimension: 2
+# gravitational_constant: 5
 # totaltime: 60
 # timestep: 0.05
 # window_increase: 10

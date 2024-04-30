@@ -5,6 +5,7 @@ Moon,white,4,1,"[130, 0]","[0 ,21.2]"
 
 # system_name: star_planet_moon system
 # dimension: 2
+# gravitational_constant: 5
 # totaltime: 60
 # timestep: 0.05
 # window_increase: 40

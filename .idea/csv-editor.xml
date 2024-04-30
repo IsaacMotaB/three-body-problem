@@ -10,6 +10,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\systems\8-figure system.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\systems\arbitrary system.csv">
           <value>
             <Attribute>
@@ -60,6 +67,13 @@
           </value>
         </entry>
         <entry key="\systems\sun_earth_moon system.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\systems\tests system.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />

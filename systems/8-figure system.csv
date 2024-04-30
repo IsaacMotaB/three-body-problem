@@ -1,0 +1,12 @@
+name,color,size,mass,position,velocity
+Star 1,red,40,1,"[-0.97000436, 0.24308753]","[0.466203685 ,0.43236573]"
+Star 2,blue,40,1,"[0.97000436, -0.24308753]","[0.466203685 ,0.43236573]"
+Star 3,green,40,1,"[0, 0]","[-0.93240737 ,-0.86473146]"
+Planet,white,15,0.001,"[-1.4, -1.42]","[0 ,0]"
+
+# system_name: 8-figure system
+# dimension: 2
+# gravitational_constant: 1
+# totaltime: 60
+# timestep: 0.05
+# window_increase: 2

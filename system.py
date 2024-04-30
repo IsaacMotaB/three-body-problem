@@ -6,18 +6,18 @@ plt.style.use('dark_background')
 
 
 class System:
-    def __init__(self, name: str, dimension: int):
+    def __init__(self, name: str, dimension: int, gravitational_constant: float):
         assert dimension == 2 or dimension == 3, "There's no visualization for this choice of dimension!"
 
         self.dimension = dimension
         self.name = name
-        self.bodies = []
         # Given the units:
         # UA = Distance Earth-Moon;
         # UM = Earth's mass;
         # UT = 1 month;
-        # the gravitational constant is approximately given by
-        self.G = 5  # UA.UM^(-1).UT^(-2)
+        # the gravitational constant is approximately 5 UA.UM^(-1).UT^(-2)
+        self.G = gravitational_constant
+        self.bodies = []
         self.initial_coordinates = []
 
     def add_body(self, body):

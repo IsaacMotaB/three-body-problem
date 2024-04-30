@@ -9,6 +9,7 @@ Body 6,purple,20,2,"[2, 1, -1]","[-2, -1, 0]"
 
 # system_name: arbitrary_3d system
 # dimension: 3
+# gravitational_constant: 5
 # totaltime: 24
 # timestep: 0.05
 # window_increase: 20

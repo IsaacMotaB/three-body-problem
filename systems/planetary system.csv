@@ -7,6 +7,7 @@ Planet4,red,18,0.000000003,"[25, 0]","[0 ,5]"
 
 # system_name: planetary system
 # dimension: 2
+# gravitational_constant: 5
 # totaltime: 60
 # timestep: 0.05
 # window_increase: 10
